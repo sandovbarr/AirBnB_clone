@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 ''' Module that contains prompt '''
-import cmd, sys
+import cmd
+import sys
 from models.base_model import BaseModel
 import models
+
 
 class HBNBCommand(cmd.Cmd):
 
@@ -22,7 +24,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, class_name):
-        ''' 
+        '''
             Create a new instance of class name given
             usage: create [classname]
         '''
@@ -34,11 +36,11 @@ class HBNBCommand(cmd.Cmd):
             new = eval(class_name)()
             new.save()
             print(new.id)
-        
+
     def do_show(self, line):
-        ''' 
+        '''
             show instance of class by id
-            usage: show [classname] [id] 
+            usage: show [classname] [id]
         '''
         command = line.split()
         if not command:
@@ -62,9 +64,9 @@ class HBNBCommand(cmd.Cmd):
                 print('** no instance found **')
 
     def do_destroy(self, line):
-        ''' 
+        '''
             Destroy instance of class by id
-            usage: destroy [classname] [id] 
+            usage: destroy [classname] [id]
         '''
         command = line.split()
         if not command:
@@ -90,14 +92,14 @@ class HBNBCommand(cmd.Cmd):
                 print('** no instance found **')
 
     def do_all(self, cls_name):
-        ''' 
+        '''
             Prints all string representation of all
             instances based or not on the class name.
             Ex: $ all BaseModel or $ all.
         '''
         all_objs = models.storage.all()
         l_eq = []
-        if cls_name and cls_name not in HBNBCommand.allclass: 
+        if cls_name and cls_name not in HBNBCommand.allclass:
             print("** class doesn't exist **")
         elif cls_name and cls_name in HBNBCommand.allclass:
             for key, value in all_objs.items():
@@ -110,9 +112,9 @@ class HBNBCommand(cmd.Cmd):
             print(l_eq)
 
     def do_update(self, line):
-        ''' 
+        '''
             update instance of class by id
-            usage: update [classname] [id] 
+            usage: update [classname] [id]
         '''
         command = line.split()
         all_objs = models.storage.all()
