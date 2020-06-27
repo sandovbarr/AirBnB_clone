@@ -2,7 +2,7 @@
 '''
     class for States
 '''
-from models import *
+from models.base_model import BaseModel
 
 
 class State(BaseModel):

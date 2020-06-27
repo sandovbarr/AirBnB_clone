@@ -2,7 +2,7 @@
 '''
     class Amenity
 '''
-from models import *
+from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):

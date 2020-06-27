@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 ''' Module for users creation '''
-from models import *
+from models.base_model import BaseModel
 
 
 class User(BaseModel):
