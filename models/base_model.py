@@ -25,7 +25,7 @@ class BaseModel:
     def __str__(self):
         ''' returns str representation '''
         return "[{}] ({}) {}"\
-            .format(__class__.__name__, self.id, self.__dict__)
+            .format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         '''
@@ -41,7 +41,7 @@ class BaseModel:
             keys/values of __dict__ of the instance
         '''
         timeformat = "%Y-%m-%dT%H:%M:%S.%f"
-        new_dict = {"__class__": __class__.__name__}
+        new_dict = {"__class__": self.__class__.__name__}
         new_dict.update(self.__dict__)
         new_dict['created_at'] = new_dict['created_at'].strftime(timeformat)
         new_dict['updated_at'] = new_dict['updated_at'].strftime(timeformat)
