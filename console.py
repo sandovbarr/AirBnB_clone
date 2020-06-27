@@ -5,11 +5,12 @@ import sys
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
-from models.engine.file_storage import FileStorage
 from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
+from models import storage
+import models
 
 
 class HBNBCommand(cmd.Cmd):
@@ -120,11 +121,13 @@ class HBNBCommand(cmd.Cmd):
             for key, value in all_objs.items():
                 if cls_name in key:
                     l_eq.append(value.__str__())
-            print(l_eq)
+            if len(l_eq):
+                print(l_eq)
         else:
             for key, value in all_objs.items():
                 l_eq.append(value.__str__())
-            print(l_eq)
+            if len(l_eq):
+                print(l_eq)
 
     def do_update(self, line):
         '''
