@@ -3,7 +3,7 @@
 import cmd
 import sys
 from models.base_model import BaseModel
-import models
+from models import *
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,7 +14,11 @@ class HBNBCommand(cmd.Cmd):
     '''
 
     prompt = "(hbnb) "
-    allclass = ['BaseModel', 'User']
+    allclass = [
+                'BaseModel', 'User', 'State',
+                'City', 'Place', 'Amenity',
+                'Review'
+                ]
 
     def do_quit(self, args):
         ''' Quit command to exit the program '''
