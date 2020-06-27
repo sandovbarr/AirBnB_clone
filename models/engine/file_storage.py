@@ -24,7 +24,7 @@ class FileStorage:
             key <obj class name>.id
         '''
         key = str(obj.__class__.__name__) + '.' + str(obj.id)
-        value = \obj
+        value = obj
         FileStorage.__objects.update({key: value})
 
     def save(self):
