@@ -7,6 +7,7 @@ import json
 from models.base_model import BaseModel
 from models.user import User
 
+
 class FileStorage:
 
     __file_path = "file.json"
@@ -15,14 +16,14 @@ class FileStorage:
     def all(self):
         ''' returns the dictionary __objects '''
         return FileStorage.__objects
-        
+
     def new(self, obj):
         '''
             sets in __objects the obj with
             key <obj class name>.id
         '''
         key = str(obj.__class__.__name__) + '.' + str(obj.id)
-        value =  obj
+        value = \obj
         FileStorage.__objects.update({key: value})
 
     def save(self):
@@ -46,7 +47,7 @@ class FileStorage:
         try:
             with open(self.__file_path, mode='r', encoding='utf-8') as file:
                 obj = json.load(file)
-                for key, value in obj.items():
-                    FileStorage.__objects[key] = eval(value['__class__'])(**value)
-        except:
+                for key, v in obj.items():
+                    FileStorage.__objects[key] = eval(v['__class__'])(**v)
+        except Exception:
             pass

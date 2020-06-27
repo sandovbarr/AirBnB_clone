@@ -7,6 +7,11 @@ import models
 
 
 class HBNBCommand(cmd.Cmd):
+    '''
+        Class for console:
+        create, show, destroy
+        all, update
+    '''
 
     prompt = "(hbnb) "
     allclass = ['BaseModel', 'User']

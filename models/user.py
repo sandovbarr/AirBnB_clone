@@ -2,8 +2,10 @@
 ''' Module for users creation '''
 from models import *
 
+
 class User(BaseModel):
-	email = ""
-	password = ""
-	first_name = ""
-	last_name = ""
+    ''' Class User inherits from BaseModel '''
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
