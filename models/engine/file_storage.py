@@ -3,6 +3,7 @@
     serializes instances to a JSON file and
     deserializes JSON file to instances
 '''
+
 import json
 from models.amenity import Amenity
 from models.base_model import BaseModel
