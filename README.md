@@ -15,3 +15,10 @@ This project is one of the first steps in the AirBnB clone which focuses on crea
 ./console.py
 ```
 
+### Contributing
+Requests for changes are welcome. For major changes, first open a verification and meeting to discuss the change.
+
+## Authors
+- Jairo Sandoval - [sandovbarr](https://github.com/sandovbarr)
+- Sergio Diaz - [S3RG1O1994](https://github.com/S3RG1O1994)
+  
