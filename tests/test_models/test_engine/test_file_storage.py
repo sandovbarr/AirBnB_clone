@@ -1,96 +1,92 @@
 #!/usr/bin/python3
-''' file storage unittesting '''
+"""File Storage Unit Tests"""
 
-import os
-import unittest
-import pep8
-import json
-import models
-from models.engine import file_storage
-from models.engine.file_storage import FileStorage
+
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
+from models.amenity import Amenity
+from models.city import City
 from datetime import datetime
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
+import models
+import os
+import sys
+import pep8
+import unittest
 
 
 class TestFileStorage(unittest.TestCase):
-    ''' class for test methods in file storage class'''
+    """Test cases for class FileStorage"""
 
-    def test_pep8_base(self):
-        """ Test the test file xD """
-        pep8style = pep8.StyleGuide(quiet=True)
-        r = pep8style.check_files(['models/engine/file_storage.py'])
-        self.assertEqual(r.total_errors, 0, "Fix Your PEP8 Style")
-
-    def test_docstring(self):
-        """test if docstring"""
-        self.assertIsNotNone(FileStorage.__doc__)
-
-    def test_docmodule(self):
-        """ Tests module """
-        self.assertTrue(len(file_storage.__doc__) >= 1)
-
-
-class TestFunctions(unittest.TestCase):
-    ''' functions unittesting '''
+    def test_pep8(self):
+        """Pep8 Test"""
+        style = pep8.StyleGuide(quiet=True)
+        result = style.check_files(['models/engine/file_storage.py'])
+        self.assertEqual(result.total_errors, 0, "Fix pep8")
 
     def setUp(self):
-        """Instance of the class"""
-        self.inst = FileStorage()
+        """Sets up the testing environment to not change the
+        previous file storage
+        """
+        self.file_path = models.storage._FileStorage__file_path
+        if os.path.exists(self.file_path):
+            os.rename(self.file_path, 'file.json')
 
-    def test_new_all_modules(self):
-        '''Test for methods save, all and new of current class'''
-        storage = FileStorage()
-        self.assertTrue(type(storage), FileStorage)
-        my_model = BaseModel()
-        my_model.name = "Holberton"
-        my_model.my_number = 89
-        my_model.save()
-        all_objs = storage.all()
-        self.assertIsInstance(all_objs, dict)
-        key = str(my_model.__class__.__name__) + '.' + str(my_model.id)
-        self.assertTrue(key in all_objs.keys())
+    def tearDown(self):
+        """Removes the JSON file after test cases run """
+        if os.path.exists(self.file_path):
+            os.remove(self.file_path)
+        if os.path.exists('file.json'):
+            os.rename('file.json', self.file_path)
 
-    def save_module(self):
-        """check save_to_file"""
-        exists = os.path.exists('file.json')
-        self.assertTrue(exists, True)
+    def test_instantiation(self):
+        """Tests for proper instantiation"""
+        insta_storage = FileStorage()
+        self.assertIsInstance(insta_storage, FileStorage)
 
-    def test_reload_method(self):
-        '''Check method of read file JSON for create objects'''
-        storage = FileStorage()
-        storage.reload()
-        all_objs = storage.all()
-        self.assertTrue(len(all_objs.keys()) > 0)
+    def test_all(self):
+        """Tests all """
+        insta_storage = FileStorage()
+        insta_dict = insta_storage.all()
+        self.assertIsNotNone(insta_dict)
+        self.assertEqual(type(insta_dict), dict)
 
-    def test_fs_instance(self):
-        """FileStorage class save checks, reload checks"""
+    def test_save(self):
+        """Tests save """
         b1 = BaseModel()
+        models.storage.new(b1)
         models.storage.save()
-        self.assertEqual(os.path.exists('file.json'), True)
-        models.storage.reload()
+        file_exist = os.path.exists(self.file_path)
+        self.assertTrue(file_exist)
 
-    def test_errs(self):
-        """Test most mal usage of FileStorage methods"""
-        b1 = BaseModel()
-        with self.assertRaises(AttributeError):
-            FileStorage.__objects
-            FileStorage.__File_path
+    def test_new(self):
+        """Tests the new method"""
+        insta_storage = FileStorage()
+        insta_dict = insta_storage.all()
+        B1 = User()
+        B1.id = '777'
+        B1.name = "B1"
+        insta_storage.new(B1)
+        key = type(B1).__name__ + '.' + B1.id
+        self.assertIsNotNone(insta_dict[key])
 
-        with self.assertRaises(TypeError):
-            models.storage.new()
-            models.storage.new(self, b1)
-            models.save(b1)
-            models.reload(b1)
-            models.all(b1)
+    def test_reload(self):
+        """Tests for the reload method"""
+        insta_storage = FileStorage()
+        try:
+            os.remove("file.json")
+        except:
+            pass
+        with open("file.json", "w") as f:
+            f.write("{}")
+        with open("file.json", "r") as f:
+            for item in f:
+                self.assertEqual(item, "{}")
+        self.assertIs(insta_storage.reload(), None)
 
-    def test_main(self):
-        ''' tester '''
-        storage=FileStorage()
-        all_objs = storage.all()
-        my_model = BaseModel()
-        my_model.name = "Holberton"
-        my_model.my_number = 89
-        my_model.save()
-        key = str(my_model.__class__.__name__) + '.' + str(my_model.id)
-        all_objs = storage.all()
-        self.assertTrue(key in all_objs.keys())
+
+if __name__ == '__main__':
+    unittest.main()
