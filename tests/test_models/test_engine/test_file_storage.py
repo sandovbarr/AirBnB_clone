@@ -73,6 +73,27 @@ class TestFileStorage(unittest.TestCase):
         key = type(B1).__name__ + '.' + B1.id
         self.assertIsNotNone(insta_dict[key])
 
+    def test_all_instance(self):
+        am = Amenity()
+        keyam = str(am.__class__.__name__) + '.' + str(am.id)
+        ci = City()
+        keyci = str(ci.__class__.__name__) + '.' + str(ci.id)
+        pl = Place()
+        keypl = str(pl.__class__.__name__) + '.' + str(pl.id)
+        rev = Review()
+        keyrev = str(rev.__class__.__name__) + '.' + str(rev.id)
+        st = State()
+        keyst = str(st.__class__.__name__) + '.' + str(st.id)
+        us = User()
+        keyus = str(us.__class__.__name__) + '.' + str(us.id)
+        all_obj = FileStorage()
+        self.assertTrue(keyam in all_obj.all())
+        self.assertTrue(keyci in all_obj.all())
+        self.assertTrue(keypl in all_obj.all())
+        self.assertTrue(keyrev in all_obj.all())
+        self.assertTrue(keyst in all_obj.all())
+        self.assertTrue(keyus in all_obj.all())
+
     def test_reload(self):
         """Tests for the reload method"""
         insta_storage = FileStorage()
