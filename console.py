@@ -39,6 +39,17 @@ class HBNBCommand(cmd.Cmd):
         ''' Just empty line '''
         pass
 
+    def default(self, line):
+        args = [self.allclass, 'all()']
+        ls = line.split('.')
+        if ls[0] in args[0]:
+            if ls[1] == args[1]:
+                self.do_all(ls[0])
+            else:
+                return cmd.Cmd.default(self, line)
+        else:
+            return cmd.Cmd.default(self, line)
+
     def do_create(self, class_name):
         '''
             Create a new instance of class name given
