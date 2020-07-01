@@ -15,13 +15,6 @@ import models
 class TestFileStorage(unittest.TestCase):
     ''' class for test methods in file storage class'''
 
-    def test_pep8(self):
-        """ Test that test/models/engine/file_storage.py conforms to PEP8 """
-        pep8style = pep8.StyleGuide(quiet=True)
-        path = 'tests/test_models/test_engine/test_file_storage.py'
-        r = pep8style.check_files([path])
-        self.assertEqual(r.total_errors, 0, "Fix Your PEP8 Style")
-
     def test_pep8_base(self):
         """ Test the test file xD """
         pep8style = pep8.StyleGuide(quiet=True)
