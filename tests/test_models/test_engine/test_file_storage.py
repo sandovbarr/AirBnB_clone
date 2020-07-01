@@ -44,6 +44,7 @@ class TestFunctions(unittest.TestCase):
         self.inst = FileStorage()
 
     def test_new_all_modules(self):
+        '''Test for methods save, all and new of current class'''
         storage = FileStorage()
         self.assertTrue(type(storage), FileStorage)
         my_model = BaseModel()
@@ -61,6 +62,7 @@ class TestFunctions(unittest.TestCase):
         self.assertTrue(exists, True)
 
     def test_reload_method(self):
+        '''Check method of read file JSON for create objects'''
         storage = FileStorage()
         storage.reload()
         all_objs = storage.all()
