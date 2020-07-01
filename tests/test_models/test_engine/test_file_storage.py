@@ -82,3 +82,15 @@ class TestFunctions(unittest.TestCase):
             models.save(b1)
             models.reload(b1)
             models.all(b1)
+
+    def test_main(self):
+        ''' tester '''
+        storage=FileStorage()
+        all_objs = storage.all()
+        my_model = BaseModel()
+        my_model.name = "Holberton"
+        my_model.my_number = 89
+        my_model.save()
+        key = str(my_model.__class__.__name__) + '.' + str(my_model.id)
+        all_objs = storage.all()
+        self.assertTrue(key in all_objs.keys())
