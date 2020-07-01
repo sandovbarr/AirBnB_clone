@@ -9,6 +9,7 @@ from models.engine import file_storage
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from datetime import datetime
+import models
 
 
 class TestFileStorage(unittest.TestCase):
@@ -67,3 +68,24 @@ class TestFunctions(unittest.TestCase):
         storage.reload()
         all_objs = storage.all()
         self.assertTrue(len(all_objs.keys()) > 0)
+
+    def test_fs_instance(self):
+        """FileStorage class save checks, reload checks"""
+        b1 = BaseModel()
+        models.storage.save()
+        self.assertEqual(os.path.exists('file.json'), True)
+        models.storage.reload()
+
+    def test_errs(self):
+        """Test most mal usage of FileStorage methods"""
+        b1 = BaseModel()
+        with self.assertRaises(AttributeError):
+            FileStorage.__objects
+            FileStorage.__File_path
+
+        with self.assertRaises(TypeError):
+            models.storage.new()
+            models.storage.new(self, b1)
+            models.save(b1)
+            models.reload(b1)
+            models.all(b1)
