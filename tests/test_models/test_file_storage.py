@@ -17,7 +17,7 @@ class TestFileStorage(unittest.TestCase):
     def test_pep8(self):
         """ Test that test/models/engine/file_storage.py conforms to PEP8 """
         pep8style = pep8.StyleGuide(quiet=True)
-        path = 'tests/test_models/test_engine/test_file_storage.py'
+        path = 'tests/test_models/test_file_storage.py'
         r = pep8style.check_files([path])
         self.assertEqual(r.total_errors, 0, "Fix Your PEP8 Style")
 
@@ -39,8 +39,13 @@ class TestFileStorage(unittest.TestCase):
 class TestFunctions(unittest.TestCase):
     ''' functions unittesting '''
 
+    def setUp(self):
+        """Instance of the class"""
+        self.inst = FileStorage()
+
     def test_new_all_modules(self):
         storage = FileStorage()
+        self.assertTrue(type(storage), FileStorage)
         my_model = BaseModel()
         my_model.name = "Holberton"
         my_model.my_number = 89
