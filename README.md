@@ -4,6 +4,14 @@ This project is one of the first steps in the AirBnB clone which focuses on crea
 
 ### Funcionalities of command line
 
-- Create new objects based in the class imported
-- Show an instance the an class with determineted ID
-- Destroy is for delete an intance created
+- Create new objects based in the class imported.
+- Show an instance the an class with determineted ID.
+- Destroy is for delete an intance created.
+- Do all to show all instance create until now or with determinated class.
+- Update it serves for add new information of attributes in an instance.
+
+### Usage
+```
+./console.py
+```
+
