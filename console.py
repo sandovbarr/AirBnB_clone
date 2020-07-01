@@ -40,11 +40,36 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def default(self, line):
-        args = [self.allclass, 'all()']
         ls = line.split('.')
-        if ls[0] in args[0]:
-            if ls[1] == args[1]:
+        if ls[0] in self.allclass:
+            if ls[1] == 'all()':
                 self.do_all(ls[0])
+            elif ls[1] == 'count()':
+                all_objs = models.storage.all()
+                counter = 0
+                for k, v in all_objs.items():
+                    if ls[0] in k:
+                        counter += 1
+                print(counter)
+            elif 'show' in ls[1] and "\"" in ls[1]:
+                new_ls = ls[1].split('\"')
+                if 'show' in new_ls[0]:
+                    st = ls[0] + ' ' + new_ls[1]
+                    self.do_show(st)
+            elif 'destroy' in ls[1] and "\"" in ls[1]:
+                new_ls = ls[1].split('\"')
+                if 'destroy' in new_ls[0]:
+                    st = ls[0] + ' ' + new_ls[1]
+                    self.do_destroy(st)
+            elif 'update' in ls[1]:
+                st = ls[1].replace(',', '.')
+                st = st.replace('update(', '')
+                st = st.replace(')', '')
+                st = st.replace('\"', '')
+                st = st.replace(' ', '')
+                st = st.replace('.', ' ')
+                fst = ls[0] + ' ' + st
+                self.do_update(fst)
             else:
                 return cmd.Cmd.default(self, line)
         else:
@@ -143,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, line):
         '''
             update instance of class by id
-            usage: update [classname] [id]
+            usage: [update] [classname] [id] [attr] [value]
         '''
         command = line.split()
         all_objs = models.storage.all()
