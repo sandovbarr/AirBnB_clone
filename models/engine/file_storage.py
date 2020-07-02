@@ -52,8 +52,8 @@ class FileStorage:
             no exception should be raised)
         '''
         try:
-            with open(self.__file_path, mode='r', encoding='utf-8') as file:
-                obj = json.load(file)
+            with open(self.__file_path, mode='r', encoding='utf-8') as f:
+                obj = json.load(f)
                 for key, v in obj.items():
                     FileStorage.__objects[key] = eval(v['__class__'])(**v)
         except Exception:
