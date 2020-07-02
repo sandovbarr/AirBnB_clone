@@ -35,7 +35,7 @@ class TestUserDocu(unittest.TestCase):
 
 
 class TestUser(unittest.TestCase):
-    """ Test base class """
+    ''' Test base class '''
 
     @classmethod
     def setUpClass(cls):
