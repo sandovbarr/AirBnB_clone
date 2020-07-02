@@ -84,6 +84,6 @@ class TestUser(unittest.TestCase):
 
     def test_kwargs(self):
         """Test the class - BaseModel passing kwargs """
-        dictonary = {'id': '662a23b3-abc7-4f43-81dc-64c000000c00'}
-        user1 = user.User(**dictonary)
+        dictionary = {'id': '662a23b3-abc7-4f43-81dc-64c000000c00'}
+        user1 = user.User(**dictionary)
         self.assertTrue(issubclass(user1.__class__, BaseModel))
