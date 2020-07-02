@@ -8,7 +8,7 @@ from models.base_model import BaseModel
 class Place(BaseModel):
     ''' Class to assing name of the Amenity'''
     city_id = ''
-    user_id = ""
+    user_id = ''
     name = ""
     description = ''
     number_rooms = 0
