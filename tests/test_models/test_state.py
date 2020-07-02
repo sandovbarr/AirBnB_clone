@@ -4,10 +4,10 @@
 import unittest
 import pep8
 import json
+import os
 from datetime import datetime
 from models import state
 from models.base_model import BaseModel
-import os
 
 
 class TestUserdocu(unittest.TestCase):
