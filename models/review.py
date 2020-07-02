@@ -9,4 +9,4 @@ class Review(BaseModel):
     ''' Class to assing review '''
     place_id = ''
     user_id = ''
-    text = ""
+    text = ''
