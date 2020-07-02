@@ -1,1 +1,11 @@
-/__pycache__/
+# cache of execution python3
+__pycache__/
+# Thumbnails
+._*
+### VisualStudioCode ###
+.vscode/
+.vscode/*
+### files ###
+*.text
+*.rar
+*.zip
