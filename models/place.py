@@ -9,7 +9,7 @@ class Place(BaseModel):
     ''' Class to assing name of the Amenity'''
     city_id = ''
     user_id = ''
-    name = ""
+    name = ''
     description = ''
     number_rooms = 0
     number_bathrooms = 0
