@@ -10,7 +10,7 @@ from models.base_model import BaseModel
 import os
 
 
-class TestUserdocu(unittest.TestCase):
+class TestUserDocu(unittest.TestCase):
     ''' test Base Documentation '''
 
     def test_pep8(self):
