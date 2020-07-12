@@ -16,5 +16,5 @@ footer > p {
 .container {
     max-width: 1000px;
     margin: 30px auto;
-    height: auto;
+    min-height: 780px;
 }
