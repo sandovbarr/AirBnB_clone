@@ -7,6 +7,10 @@ body {
     color: #484848;
 }
 
+.container {
+    height: 100vh;
+}
+
 footer > p {
     text-align: center;
     margin-top: 22px;
